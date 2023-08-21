@@ -17,7 +17,6 @@ var relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
 const sxClasses = {
-  wrapper: { display: "flex", justifyContent: "center", alignItems: "center" },
   paper: { p: 2, width: 1 / 3 },
   dateContainer: {
     pt: 2,
@@ -69,32 +68,28 @@ const DatePickerView = () => {
   }, [startValue, endValue, inProgress]);
 
   return (
-    <Box sx={sxClasses.wrapper}>
-      <Paper sx={sxClasses.paper}>
-        <Typography>DatePicker</Typography>
-        <Box sx={sxClasses.dateContainer}>
-          <DateTimePicker
-            label={locale.datePicker.startLabel}
-            value={startValue}
-            onChange={(newValue) => setStartValue(newValue)}
-          />
-          {!inProgress && (
-            <DateTimePicker
-              label={locale.datePicker.endLabel}
-              value={endValue}
-              onChange={(newValue) => setEndValue(newValue)}
-            />
-          )}
-        </Box>
-        <FormControlLabel
-          control={
-            <Checkbox checked={inProgress} onChange={handleInProgress} />
-          }
-          label={locale.datePicker.checkBoxLabel}
+    <Paper sx={sxClasses.paper}>
+      <Typography>DatePicker</Typography>
+      <Box sx={sxClasses.dateContainer}>
+        <DateTimePicker
+          label={locale.datePicker.startLabel}
+          value={startValue}
+          onChange={(newValue) => setStartValue(newValue)}
         />
-        {startValue && (endValue || inProgress) && dateHumanizer(passedTime)}
-      </Paper>
-    </Box>
+        {!inProgress && (
+          <DateTimePicker
+            label={locale.datePicker.endLabel}
+            value={endValue}
+            onChange={(newValue) => setEndValue(newValue)}
+          />
+        )}
+      </Box>
+      <FormControlLabel
+        control={<Checkbox checked={inProgress} onChange={handleInProgress} />}
+        label={locale.datePicker.checkBoxLabel}
+      />
+      {startValue && (endValue || inProgress) && dateHumanizer(passedTime)}
+    </Paper>
   );
 };
 
