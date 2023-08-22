@@ -27,7 +27,7 @@ export const useGetUsers = () => {
   const handleScroll = React.useCallback(() => {
     // TODO add functional for scroll preserve on rerender
     if (
-      window.innerHeight + document.documentElement.scrollTop !==
+      Math.ceil(window.innerHeight + document.documentElement.scrollTop) <
         document.documentElement.offsetHeight ||
       loading
     ) {

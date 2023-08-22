@@ -3,7 +3,6 @@ import {
   Box,
   CircularProgress,
   Grid,
-  LinearProgress,
   Paper,
 } from "@mui/material";
 import { useGetUsers } from "./helper";
