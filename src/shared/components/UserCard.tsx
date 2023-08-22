@@ -18,6 +18,11 @@ interface IUserCard {
   user: User;
 }
 
+const sxClasses = {
+  formControl: { m: 1, width: "100%" },
+  input: {pr: 3}
+}
+
 const UserCard: React.FC<IUserCard> = ({ user }) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -46,9 +51,10 @@ const UserCard: React.FC<IUserCard> = ({ user }) => {
         <Typography variant="body2" color="text.secondary">
           {user.date_of_birth}
         </Typography>
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+        <FormControl sx={sxClasses.formControl} variant="outlined">
           <Input
             id="outlined-adornment-password"
+            sx={sxClasses.input}
             type={showPassword ? "text" : "password"}
             defaultValue={user.password}
             disableUnderline
