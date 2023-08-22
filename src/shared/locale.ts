@@ -1,4 +1,6 @@
 export default {
+  welcome:
+    "Welcome to this task project, please explore the pages and the codes.",
   datePicker: {
     startLabel: "Start Date",
     endLabel: "End Date",

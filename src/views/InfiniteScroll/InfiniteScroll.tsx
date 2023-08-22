@@ -7,7 +7,7 @@ import {
   Paper,
 } from "@mui/material";
 import { useGetUsers } from "./helper";
-import UserCard from "./UserCard";
+import UserCard from "../../shared/components/UserCard";
 
 const sxClasses = {
   paper: { p: 2, m: 2, width: 1 / 2 },

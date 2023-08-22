@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "./types";
+import { User } from "../../views/InfiniteScroll/types";
 import {
   Avatar,
   Card,

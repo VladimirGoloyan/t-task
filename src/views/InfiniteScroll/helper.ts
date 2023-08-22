@@ -1,5 +1,5 @@
 import React from "react";
-import { getUsers } from "../../shared/sharedApi";
+import { getUsers } from "../../shared/api/sharedApi";
 import { User } from "./types";
 import axios, { AxiosError } from "axios";
 
