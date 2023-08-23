@@ -30,10 +30,11 @@ const DatePickerView = () => {
   const [startValue, setStartValue] = React.useState<Dayjs | null>(null);
   const [endValue, setEndValue] = React.useState<Dayjs | null>(null);
   const [inProgress, setInProgress] = React.useState<boolean>(false);
-
-  const passedTime = !inProgress
-    ? moment.duration(endValue?.diff(startValue))
-    : moment.duration(dayjs().diff(startValue));
+  const [passedTime, setPassedTime] = React.useState(
+    !inProgress
+      ? moment.duration(endValue?.diff(startValue))
+      : moment.duration(dayjs().diff(startValue))
+  );
 
   const dateHumanizer = (time: moment.Duration) => {
     return (
@@ -46,6 +47,8 @@ const DatePickerView = () => {
   };
 
   const handleInProgress = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if(event.target.checked === true)
+      setEndValue(null);
     setInProgress(event.target.checked);
   };
 
@@ -57,12 +60,22 @@ const DatePickerView = () => {
         setEndValue(null);
         if (dayDifference < 0) alert(locale.datePicker.futureEndDate);
         else alert(locale.datePicker.oneDayDifference);
+      } else {
+        setPassedTime(moment.duration(endValue?.diff(startValue)));
       }
     } else if (startValue && inProgress) {
       const difference = dayjs().diff(startValue);
       if (difference < 0) {
         alert(locale.datePicker.futureStartDate);
         setStartValue(null);
+      } else {
+        const timerId = setInterval(
+          () => setPassedTime(moment.duration(dayjs().diff(startValue))),
+          1000
+        );
+        return function cleanup() {
+          clearInterval(timerId);
+        };
       }
     }
   }, [startValue, endValue, inProgress]);

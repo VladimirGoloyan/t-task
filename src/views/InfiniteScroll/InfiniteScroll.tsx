@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Box,
-  CircularProgress,
-  Grid,
-  Paper,
-} from "@mui/material";
+import { Box, CircularProgress, Grid, Paper } from "@mui/material";
 import { useGetUsers } from "./helper";
 import UserCard from "../../shared/components/UserCard";
 
@@ -35,18 +30,17 @@ const InfiniteScroll = () => {
   return (
     <Paper sx={sxClasses.paper}>
       <Grid container sx={sxClasses.scrollGrid}>
-        {loading && (
-          <Box sx={sxClasses.loading}>
-            <CircularProgress />
-          </Box>
-        )}
-        {!loading &&
-          data?.length !== 0 &&
+        {data &&
           data?.map((item) => (
             <Grid key={item.id} item sx={sxClasses.gridItem}>
               <UserCard user={item} />
             </Grid>
           ))}
+        {loading && (
+          <Box sx={sxClasses.loading}>
+            <CircularProgress />
+          </Box>
+        )}
       </Grid>
     </Paper>
   );
